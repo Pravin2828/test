@@ -1,0 +1,60 @@
+# Configure the AWS provider
+provider "aws" {
+  region = "us-east-1" # Change this to your desired AWS region
+}
+
+# Define an S3 bucket
+resource "aws_s3_bucket" "example" {
+  bucket = "example-terraform-bucket" # Specify a unique bucket name
+  acl    = "private"                  # Specify the bucket's access control policy
+
+  # Optional: Define tags for your S3 bucket
+  tags = {
+    Name = "ExampleS3Bucket"
+  }
+}
+
+
+
+
+
+
+In this example:
+
+We configure the AWS provider with the desired AWS region.
+
+We define an S3 bucket using the aws_s3_bucket resource.
+
+Set the bucket attribute to specify a unique name for your S3 bucket. The name should be globally unique across all AWS S3 buckets.
+
+Set the acl attribute to specify the access control policy for the bucket. You can use values like "private", "public-read", or "public-read-write" depending on your requirements.
+
+Optionally, you can define tags for your S3 bucket to help with organization and identification.
+
+Make sure to replace the placeholder values in the configuration with your specific details.
+
+To use this configuration, follow these steps:
+
+Initialize Terraform in the directory containing your configuration file:
+
+bash
+Copy code
+terraform init
+Review the changes that Terraform will make to your AWS infrastructure:
+
+bash
+Copy code
+terraform plan
+If the plan looks correct, apply the changes to create the S3 bucket:
+
+bash
+Copy code
+terraform apply
+Terraform will prompt you for confirmation before making any changes. Once confirmed, it will create the S3 bucket according to your configuration.
+
+Make sure you have the AWS CLI configured with the necessary credentials and permissions to create S3 buckets. Additionally, be aware that S3 bucket names must be globally unique, so choose a unique name for your bucket.
+
+
+
+
+

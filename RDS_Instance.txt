@@ -1,0 +1,25 @@
+# Configure the AWS provider
+provider "aws" {
+  region = "us-east-1" # Change this to your desired AWS region
+}
+
+# Define an RDS instance
+resource "aws_db_instance" "example" {
+  allocated_storage    = 20 # Specify the storage size in GB
+  storage_type         = "gp2" # Specify the storage type (e.g., gp2, standard)
+  engine               = "mysql" # Specify the database engine (e.g., mysql, postgres)
+  engine_version       = "5.7" # Specify the database engine version
+  instance_class       = "db.t2.micro" # Specify the instance type
+  name                 = "example-db" # Specify the database name
+  username             = "dbadmin" # Specify the master username
+  password             = "YourStrongPassword" # Specify the master password
+
+  # Optional: Specify the security group(s) and parameter group
+  vpc_security_group_ids = ["sg-0123456789abcdef0"] # Specify security group(s)
+  parameter_group_name  = "default.mysql5.7" # Specify parameter group
+
+  # Optional: Define tags for your RDS instance
+  tags = {
+    Name = "ExampleRDSInstance"
+  }
+}
